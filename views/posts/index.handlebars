@@ -1,0 +1,38 @@
+<h1>Posts</h1>
+<div class="row">
+    {{#each posts}}
+    <div class="col s12 m4">        
+        <div class="card">
+            <div class="card-image">
+                {{#if image}}
+                    <img src="{{image}}"> 
+                    <span class="card-title">{{title}}</span>
+                {{else}}
+                {{/if}}                 
+                {{#if user}} 
+                    {{{editIcon user.id ../user.id id}}} 
+                {{/if}}
+            </div>
+            <div class="card-content center-align">
+                {{#if image}}
+                {{else}}
+                    <h5>{{title}}</h5>
+                {{/if}}
+                {{!--
+                <p class="post-text">{{stripTags (truncate body 150)}}</p> 
+                <br>
+                --}}
+                <div class="chip">
+                    <img src="{{user.image}}">
+                    <a href="/posts/user/{{user.id}}">{{user.firstName}} {{user.lastName}}</a>
+                </div>
+            </div>
+            <div class="card-action center-align">
+                <a class="btn grey" href="/posts/show/{{id}}">Read More</a>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <p>No posts found</p>
+    {{/each}}
+</div>

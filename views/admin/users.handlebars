@@ -1,0 +1,70 @@
+<h4>User access settings</h4>
+{{#if users}}
+<div class="row">
+    {{#each users}}
+    <div class="col s12 m4">
+
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="{{image}}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{firstName}} {{lastName}}
+                    <i class="material-icons right fa fa-chevron-up"></i>
+                </span>
+                <p>
+                    <a href="#"></a>
+                </p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{firstName}} {{lastName}}
+                    <i class="material-icons right fa fa-chevron-down"></i>
+                </span>
+                <div class="row">
+                    <div class="col s12">
+                        <p>Email: {{email}}</p>
+                        <p>google+: {{googleID}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="s12">
+                        {{#if access}}
+                        <form action="/admin/access/{{id}}?_method=PUT" method="post" class="col s12">
+                            <input type="hidden" name="_method" value="PUT">
+                            <button type="submit" style="width:100%" class="btn btn-large red">
+                                <i class="fa-fa-remove"></i> Remove Access</button>
+                        </form>
+                        {{else}}
+                        <form action="/admin/access/{{id}}?_method=PUT" method="post" class="col s12">
+                            <input type="hidden" name="_method" value="PUT">
+                            <button type="submit" style="width:100%" class="btn btn-large green">
+                                <i class="fa-fa-plus"></i> Allow Access</button>
+                        </form>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="row" style="margin-top:15px">
+                    <div class="s12">
+                        {{#if role}}
+                        <form action="/admin/role/{{id}}?_method=PUT" method="post" class="col s12">
+                            <input type="hidden" name="_method" value="PUT">
+                            <button type="submit" style="width:100%" class="btn btn-large red">
+                                <i class="fa-fa-remove"></i> Remove Role</button>
+                        </form>
+                        {{else}}
+                        <form action="/admin/role/{{id}}?_method=PUT" method="post" class="col s12">
+                            <input type="hidden" name="_method" value="PUT">
+                            <button type="submit" style="width:100%" class="btn btn-large green">
+                                <i class="fa-fa-plus"></i> Upgrade Role</button>
+                        </form>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {{/each}} {{else}}
+    <p>No Users found.</p>
+</div>
+{{/if}}
